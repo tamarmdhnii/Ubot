@@ -15,5 +15,5 @@ AI_GOOGLE_API = os.getenv("AI_GOOGLE_API", "")
 DEVS = list(map(int, os.getenv("DEVS", "7722544952 #927338035").split()))
 MONGO_URL = os.getenv(
     "MONGO_URL",
-    "",
+    "mongodb+srv://tamaspros:OXvQnyOL9tQXVaKC@cluster0.5sr7r.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
 )
