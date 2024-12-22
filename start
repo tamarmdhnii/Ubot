@@ -1,0 +1,3 @@
+read -sp "Masukkan kunci anda: " key
+clear 
+python3 -m PyroUbot "$key"
