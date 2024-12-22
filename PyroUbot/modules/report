@@ -1,0 +1,39 @@
+
+from pyrogram import Client, filters
+from PyroUbot import *
+
+# Daftar alasan yang valid untuk report
+ALASAN_VALID = ["spam", "adult", "faker", "copyright"]
+
+@PY.UBOT("report")
+async def report_user(client, message):
+  # Pastikan pengguna membalas pesan
+  if not message.reply_to_message:
+    await message.reply("Mohon balas pesan yang ingin Anda laporkan.")
+    return
+
+  # Dapatkan alasan dan user ID yang dilaporkan
+  pesan = message.text.split(maxsplit=1)
+  if len(pesan) < 2:
+    await message.reply("Mohon berikan alasan untuk melaporkan pengguna.")
+    return
+
+  alasan = pesan[1]
+  user_id = message.reply_to_message.from_user.id
+  chat_id = message.chat.id
+
+  # Validasi alasan
+  if alasan.lower() not in ALASAN_VALID:
+    await message.reply(
+      f"Alasan tidak valid. Silahkan gunakan salah satu dari: {', '.join(ALASAN_VALID)}"
+    )
+    return
+
+  # Implementasi report_user di PyroUbot (Contoh)
+  try:
+    # Logika untuk melaporkan pengguna ke developer atau database internal
+    await PY.UBOT.report_user(user_id=user_id, reason=alasan)  
+    await message.reply("Pengguna telah dilaporkan.")
+    
+  except Exception as e:
+    await message.reply(f"Terjadi kesalahan: {e}")
